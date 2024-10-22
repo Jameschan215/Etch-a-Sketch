@@ -3,9 +3,207 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+
 		<title>Etch-a-Sketch</title>
+
+		<script
+			src="https://kit.fontawesome.com/8b6d454afa.js"
+			crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="./style/main.css" />
 	</head>
 	<body>
-		<h1>Etch-a-Sketch</h1>
+		<main class="main">
+			<header class="header">
+				<h1>Etch-a-Sketch</h1>
+			</header>
+
+			<div id="container" class="container">
+				<div class="controls controls-left">
+					<button id="hover-btn" class="btn hover-btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-hand">
+							<path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" />
+							<path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" />
+							<path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" />
+							<path
+								d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+						</svg>
+					</button>
+
+					<button id="drag-btn" class="btn drag-btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-grab">
+							<path d="M18 11.5V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1.4" />
+							<path d="M14 10V8a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" />
+							<path d="M10 9.9V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v5" />
+							<path d="M6 14a2 2 0 0 0-2-2a2 2 0 0 0-2 2" />
+							<path
+								d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-4a8 8 0 0 1-8-8 2 2 0 1 1 4 0" />
+						</svg>
+					</button>
+
+					<div class="color-picker-wrapper">
+						<button id="single-color-btn" class="btn single-color-btn">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-spray-can">
+								<path d="M3 3h.01" />
+								<path d="M7 5h.01" />
+								<path d="M11 7h.01" />
+								<path d="M3 7h.01" />
+								<path d="M7 9h.01" />
+								<path d="M3 11h.01" />
+								<rect width="4" height="4" x="15" y="5" />
+								<path d="m19 9 2 2v10c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V11l2-2" />
+								<path d="m13 14 8-2" />
+								<path d="m13 19 8-2" />
+							</svg>
+						</button>
+
+						<label class="color-block" id="color-block" for="color-picker">
+							<input
+								type="color"
+								name="color-picker"
+								id="color-picker"
+								hidden />
+						</label>
+					</div>
+
+					<button id="random-color-btn" class="btn random-color-btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-palette">
+							<circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+							<circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+							<circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+							<circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+							<path
+								d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+						</svg>
+					</button>
+				</div>
+				<div id="pixels-container" class="pixels-container"></div>
+				<div class="controls controls-right">
+					<button id="grid-btn-sm" class="btn grid-btn-sm">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-square">
+							<rect width="18" height="18" x="3" y="3" rx="2" />
+						</svg>
+					</button>
+
+					<button id="grid-btn-md" class="btn grid-btn-md">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-grid-2x2">
+							<rect width="18" height="18" x="3" y="3" rx="2" />
+							<path d="M3 12h18" />
+							<path d="M12 3v18" />
+						</svg>
+					</button>
+
+					<button id="grid-btn-lg" class="btn grid-btn-lg">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-grid-3x3">
+							<rect width="18" height="18" x="3" y="3" rx="2" />
+							<path d="M3 9h18" />
+							<path d="M3 15h18" />
+							<path d="M9 3v18" />
+							<path d="M15 3v18" />
+						</svg>
+					</button>
+
+					<button id="clear-btn" class="btn clear-btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-rotate-ccw">
+							<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+							<path d="M3 3v5h5" />
+						</svg>
+					</button>
+				</div>
+			</div>
+
+			<footer class="footer">
+				<p>
+					© 2024 Odin Project Assignment by
+					<a href="https://github.com/JamesChan" target="_blank">James Chen</a>.
+					All rights reserved.
+				</p>
+			</footer>
+		</main>
+
+		<script type="module" src="./script/main.js"></script>
+		<script type="module" src="./script/utils.js"></script>
+		<script type="module" src="./script/ui.js"></script>
 	</body>
 </html>
